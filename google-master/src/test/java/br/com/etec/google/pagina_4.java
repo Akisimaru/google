@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.github.javafaker.Faker;
 
@@ -17,9 +19,9 @@ private WebDriver driver;
 	public void pagina4() throws InterruptedException {
 		Faker faker = new Faker();
 		String email = faker.name().fullName();
-	driver.findElement(By.xpath("//input[@id='email_create']")).sendKeys(email.replace(" ", "") + "@teste.com");
-	Thread.sleep(2000);
-	driver.findElement(By.xpath("//form[@id='create-account_form']//span[1]")).click();
-	Thread.sleep(2000);
+		new WebDriverWait(driver, 10)
+		.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='email_create']")));
+		driver.findElement(By.xpath("//input[@id='email_create']")).sendKeys(email.replace(" ", "") + "@teste.com");
+		driver.findElement(By.xpath("//form[@id='create-account_form']//span[1]")).click();
 	}
 }

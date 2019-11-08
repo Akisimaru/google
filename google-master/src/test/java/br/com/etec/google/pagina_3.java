@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class pagina_3 {
 private WebDriver driver;
@@ -14,7 +16,9 @@ private WebDriver driver;
 	}
 
 	public void pagina3() throws InterruptedException{
-	driver.findElement(By.xpath("//a[@class='button btn btn-default standard-checkout button-medium']//span[contains(text(),'Proceed to checkout')]")).click();
-	Thread.sleep(5000);
+		new WebDriverWait(driver, 10)
+		.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='button btn btn-default standard-checkout button-medium']//span[contains(text(),'Proceed to checkout')]")));
+		driver.findElement(By.xpath("//a[@class='button btn btn-default standard-checkout button-medium']//span[contains(text(),'Proceed to checkout')]")).click();
+
 	}
 }
